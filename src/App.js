@@ -62,8 +62,31 @@ function App() {
         <p>5월 1일 발행</p>
       </div>
       <h4>{post}</h4>
+
+      <Modal></Modal>
+      <Modal />
     </div>
   );
 }
+//컴포넌트 만드는법
+//1.function() 만들기 function app 바깥쪽에
+//2.return() 안에 html 담기
+//3.<함수명></함수명> 쓰기
 
+//컴포넌트로 만들면 좋은 유형
+//1.반복적인 HTML축약할때
+//2.큰페이지들
+//3.자주 변경되는 THML UI
+
+//숙제 컴포넌트 만들어보기!!
+
+function Modal() {
+  return (
+    <div className="modal">
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  );
+}
 export default App;
