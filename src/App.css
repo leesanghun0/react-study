@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+.r-button {
+  background-color: red;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  text-align: center;
+  display: inline-block;
+  padding: 0 20px;
+  color: #eee;
+  cursor: pointer;
+}
+
 .modal {
   margin-top: 20px;
   padding: 20px;
@@ -28,6 +39,9 @@ div {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+h4 {
+  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: no-preference) {

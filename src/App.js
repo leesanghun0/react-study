@@ -13,6 +13,22 @@ function App() {
   ]);
   let [좋아요, 좋아요추가] = useState(0);
 
+  //[동적인 UI만드는 step]
+  //1.html css로 미리 디자인 완성
+  //2.UI현재 상태를 state로 저장
+  //3.state에 따라 UI가 어떻게 보일지 작성
+
+  let [modal, setModal] = useState(false);
+
+  [1, 2, 3, 4].map(function (a) {
+    console.log(a);
+  });
+
+  // ------------------map함수의 기능-------------
+  //1.array자료 캣수만큼 함수안의 코드를 실행시켜줌
+  //2.함수의 파라미터는 array안에 있던 자료임
+  //3.return에 적으면 array로 담아줌
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -20,7 +36,7 @@ function App() {
           ReactBlog
         </h4>
       </div>
-      <div className="list">
+      {/* <div className="list">
         <h4>
           {글제목[0]}
           <span
@@ -58,13 +74,59 @@ function App() {
         <p>5월 1일 발행</p>
       </div>
       <div className="list">
-        <h4>{글제목[2]}</h4>
+        <h4
+          onClick={() => {
+            setModal(!modal);
+          }}
+        >
+          {글제목[2]}
+        </h4>
         <p>5월 1일 발행</p>
-      </div>
+      </div> */}
+
+      {
+        //조건식 ? 참일때 실행할 코드 : 거짓일때 실행할 코드
+        //1 == 1 ? "맞음음" : "아님"
+        // modal == true ? <Modal /> : null
+      }
+      {/* {history % 2 == 0 ? setModal(false) : setModal(true)} */}
+
       <h4>{post}</h4>
 
-      <Modal></Modal>
+      {글제목.map(function (a, i) {
+        return (
+          <div className="list">
+            <h4
+              onClick={() => {
+                setModal(!modal);
+              }}
+            >
+              {글제목[i]}
+              <span
+                onClick={() => {
+                  좋아요추가(좋아요 + 1);
+                }}
+              >
+                👍
+              </span>
+              {좋아요}
+            </h4>
+            <p>5월 1일 발행</p>
+          </div>
+        );
+      })}
+
+      {
+        //조건식 ? 참일때 실행할 코드 : 거짓일때 실행할 코드
+        //1 == 1 ? "맞음음" : "아님"
+        modal == true ? <Modal /> : null
+      }
+      {/* {history % 2 == 0 ? setModal(false) : setModal(true)} */}
+
+      {/* <Modal></Modal>
       <Modal />
+
+      <Button /> */}
     </div>
   );
 }
@@ -86,6 +148,14 @@ function Modal() {
       <h4>제목</h4>
       <p>날짜</p>
       <p>상세내용</p>
+    </div>
+  );
+}
+
+function Button() {
+  return (
+    <div className="r-button">
+      <h5>버튼</h5>
     </div>
   );
 }
