@@ -19,6 +19,8 @@ function App() {
   //3.state에 따라 UI가 어떻게 보일지 작성
 
   let [modal, setModal] = useState(false);
+  let [title, setTitle] = useState(2);
+  let [입력값, 입력값변경] = useState("");
 
   [1, 2, 3, 4].map(function (a) {
     console.log(a);
@@ -99,11 +101,13 @@ function App() {
             <h4
               onClick={() => {
                 setModal(!modal);
+                setTitle(i);
               }}
             >
               {글제목[i]}
               <span
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   좋아요추가(좋아요 + 1);
                 }}
               >
@@ -119,7 +123,9 @@ function App() {
       {
         //조건식 ? 참일때 실행할 코드 : 거짓일때 실행할 코드
         //1 == 1 ? "맞음음" : "아님"
-        modal == true ? <Modal /> : null
+        modal == true ? (
+          <Modal title={title} 글제목변경={글제목변경} 글제목={글제목} />
+        ) : null
       }
       {/* {history % 2 == 0 ? setModal(false) : setModal(true)} */}
 
@@ -127,6 +133,13 @@ function App() {
       <Modal />
 
       <Button /> */}
+
+      <input
+        onChange={(e) => {
+          입력값변경(e.target.value);
+          console.log(입력값);
+        }}
+      />
     </div>
   );
 }
@@ -142,12 +155,19 @@ function App() {
 
 //숙제 컴포넌트 만들어보기!!
 
-function Modal() {
+function Modal(props) {
   return (
     <div className="modal">
-      <h4>제목</h4>
+      <h4>{props.글제목[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button
+        onClick={() => {
+          props.글제목변경(["여자 코트 추천", "강남우동 맛집", "파이썬 득함"]);
+        }}
+      >
+        글수정
+      </button>
     </div>
   );
 }
@@ -160,3 +180,8 @@ function Button() {
   );
 }
 export default App;
+
+//props
+//(무조건)부모->자식 state 전송하려면 props문법 사용
+//1.<자식컴포넌트 작명={state이름}>
+//2.props파라미터 등록 후 props.작명 사용
